@@ -1,7 +1,28 @@
 <script setup lang="ts">
+import { assertExpressionStatement, awaitExpression } from '@babel/types';
+import axios from 'axios'
+
 defineProps<{
   msg: string
 }>()
+</script>
+
+<script lang="ts">
+export default {
+  data() {
+    return {
+    name: 'helloworld'
+    }
+  }, 
+  methods: {
+    onBtnClick() {
+      console.log('clicked')
+      axios.get('http://web_network/api/hello').then((function (response) {
+        console.log(response);
+      }))
+    }
+  }
+}
 </script>
 
 <template>
@@ -12,6 +33,7 @@ defineProps<{
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
     </h3>
+    <button @click="onBtnClick()">click</button>
   </div>
 </template>
 
